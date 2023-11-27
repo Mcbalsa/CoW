@@ -35,11 +35,11 @@ public class School {
     @Column(name = "founder", nullable = false)
     private String founder;
 
-    @Column(name = "teacher_id", nullable = true)
-    private String teacher_id;
+    // @Column(name = "teacher_id", nullable = true)
+    // private String teacher_id;
 
-    @Column(name = "application_id", nullable = true)
-    private String application_id;
+    // @Column(name = "application_id", nullable = true)
+    // private String application_id;
     
 }
 
