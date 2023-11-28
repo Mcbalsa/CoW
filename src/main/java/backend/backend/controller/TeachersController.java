@@ -8,46 +8,39 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import backend.backend.models.School;
-import backend.backend.service.ISchoolService;
+import backend.backend.models.Teachers;
+import backend.backend.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/School")
+@RequestMapping("/api/v1/Applications")
 @RequiredArgsConstructor
-public class SchoolController {
-    
+public class TeachersController {
+
     @Autowired
-    private ISchoolService schoolService;
+    private ITeacherService teacherService;
 
     @PostMapping("New")
     @ResponseStatus(HttpStatus.CREATED)
-    public School createNew(@RequestBody School school) {
-        return schoolService.createNew(school);
-    }
-
-    @PutMapping("Update")
-    @ResponseStatus(HttpStatus.OK)
-    public School update(@RequestBody School school) {
-        return schoolService.update(school);
+    public Teachers createNew(@RequestBody Teachers teacher) {
+        return teacherService.createNew(teacher);
     }
 
     @GetMapping("GetAll")
     @ResponseStatus(HttpStatus.OK)
-    public List<School> getAllSchools() {
-        return schoolService.getAllSchools();
+    public List<Teachers> getAllApps() {
+        return teacherService.getAllApps();
     }
 
     @DeleteMapping("DeleteById")
     @ResponseStatus(HttpStatus.OK)
     public boolean deleteById(Long id) {
-        return schoolService.deleteById(id);
+        return teacherService.deleteById(id);
     }
 }

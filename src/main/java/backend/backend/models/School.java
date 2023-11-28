@@ -1,10 +1,14 @@
 package backend.backend.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,12 +39,11 @@ public class School {
     @Column(name = "founder", nullable = false)
     private String founder;
 
-    // @Column(name = "teacher_id", nullable = true)
-    // private String teacher_id;
+    @OneToMany(targetEntity = Teachers.class)
+    private List<Teachers> teachers = new ArrayList<Teachers>();
 
-    // @Column(name = "application_id", nullable = true)
-    // private String application_id;
-    
+    @OneToMany(targetEntity = Applications.class)
+    private List<Applications> applications = new ArrayList<Applications>();
 }
 
 

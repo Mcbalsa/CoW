@@ -1,6 +1,7 @@
 package backend.backend.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,9 +30,31 @@ public class SchoolServiceImpl implements ISchoolService {
     }
 
     @Override
+    public School update(School school) {
+        Optional<School> existingSchool = schoolRepository.findById(school.getId());
+        if(existingSchool.isEmpty())
+            throw new RuntimeException(String.format("No school found by id %", school.getId()));
+        existingSchool.get().setName(school.getName());
+        existingSchool.get().setCity(school.getCity());
+        existingSchool.get().setProvince(school.getProvince());
+        existingSchool.get().setFounder(school.getFounder());
+        return schoolRepository.save(existingSchool.get());
+    }
+
+    @Override
     public List<School> getAllSchools() {
         List<School> schools = schoolRepository.findAll();
         return schools;
+    }
+
+    @Override
+    public Boolean deleteById(Long schoolId) {
+        schoolRepository.deleteById(schoolId);
+        if(schoolRepository.findById(schoolId).isEmpty())
+            return Boolean.TRUE;
+        return Boolean.FALSE;
+            
+        
     }
 
 }
