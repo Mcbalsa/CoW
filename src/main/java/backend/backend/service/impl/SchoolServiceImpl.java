@@ -26,14 +26,16 @@ public class SchoolServiceImpl implements ISchoolService {
                         .city(school.getCity())
                         .province(school.getProvince())
                         .founder(school.getFounder())
+                        .teachers(school.getTeachers())
+                        .applications(school.getApplications())
                         .build());
     }
 
     @Override
     public School update(School school) {
-        Optional<School> existingSchool = schoolRepository.findById(school.getId());
+        Optional<School> existingSchool = schoolRepository.findById(school.getSchoolId());
         if(existingSchool.isEmpty())
-            throw new RuntimeException(String.format("No school found by id %", school.getId()));
+            throw new RuntimeException(String.format("No school found by id %", school.getSchoolId()));
         existingSchool.get().setName(school.getName());
         existingSchool.get().setCity(school.getCity());
         existingSchool.get().setProvince(school.getProvince());

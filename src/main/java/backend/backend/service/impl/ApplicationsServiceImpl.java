@@ -25,6 +25,7 @@ public class ApplicationsServiceImpl implements IApplicationService {
                         .race(app.getRace())
                         .notes(app.getNotes())
                         .reason(app.getReason())
+                        .school(app.getSchool())
                         .build());
     }
 

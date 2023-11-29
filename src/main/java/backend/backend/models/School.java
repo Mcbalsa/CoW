@@ -1,14 +1,17 @@
 package backend.backend.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +24,14 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "School")
+@JsonIgnoreProperties({"teachers", "applications"})
 public class School {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "school_generator")
+    @SequenceGenerator(name = "school_generator", sequenceName = "school_seq")
+    @Column(name = "school_id")
+    private long schoolId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -39,11 +45,9 @@ public class School {
     @Column(name = "founder", nullable = false)
     private String founder;
 
-    @OneToMany(targetEntity = Teachers.class)
-    private List<Teachers> teachers = new ArrayList<Teachers>();
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Teachers> teachers;
 
-    @OneToMany(targetEntity = Applications.class)
-    private List<Applications> applications = new ArrayList<Applications>();
+    @OneToMany(mappedBy = "school", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Applications> applications;
 }
-
-

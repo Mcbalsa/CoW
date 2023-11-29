@@ -25,6 +25,7 @@ public class TeachersService implements ITeacherService{
                 .race(teacher.getRace())
                 .title(teacher.getTitle())
                 .photoUrl(teacher.getPhotoUrl())
+                .school(teacher.getSchool())
                 .build());
     }
 

@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/v1/Applications")
+@RequestMapping("/api/v1/Teachers")
 @RequiredArgsConstructor
 public class TeachersController {
 
