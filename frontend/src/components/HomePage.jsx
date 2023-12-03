@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from 'react';
+import ContactUs from "./ContactUs";
 import Features from "./Features";
 import Overview from "./Overview";
 import Staff from "./Staff";
@@ -68,7 +69,7 @@ function HomePage() {
           <Staff />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Item Four
+          <ContactUs />
         </CustomTabPanel>
       </Box>
     );

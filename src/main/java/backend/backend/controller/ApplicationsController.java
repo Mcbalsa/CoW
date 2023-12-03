@@ -26,7 +26,7 @@ public class ApplicationsController {
     @Autowired
     private IApplicationService applicationService;
 
-    @PostMapping("New")
+    @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public Applications createNew(@RequestBody Applications app) {
         return applicationService.createNew(app);
